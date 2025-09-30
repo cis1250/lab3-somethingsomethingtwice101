@@ -33,5 +33,16 @@ user_sentence = input("Enter a sentence: ")
 
 while (is_sentence(user_sentence) == False):
     print("This does not meet the criteria for a sentence.")
-    user_input = input("Enter a sentence: ")
-    
+    user_sentence = input("Enter a sentence: ")
+
+words = user_sentence.split()
+word_dict = {}
+for w in words:
+    # Remove all non-words and space characters
+    w = re.sub(r'[^\w\s]', '', w).lower()
+    if w not in word_dict:
+        word_dict[w] = 0
+    word_dict[w] += 1
+
+for k in word_dict:
+    print(f"{k}: {word_dict[k]}")
